@@ -2,30 +2,27 @@
 
 /* jasmine specs for controllers go here */
 
-describe('MyCtrl1', function(){
-  var myCtrl1;
+describe('ContractWizardCtrl', function(){
+  beforeEach(module('myApp'));
+  var scope, ctrl;
 
-  beforeEach(function(){
-    myCtrl1 = new MyCtrl1();
+  beforeEach(inject(function($rootScope, $controller){
+    scope = $rootScope.$new();
+    ctrl = $controller('ContractWizardCtrl', {$scope: scope});
+  }));
+
+  it('can advance steps', function(){
+    expect(scope.wizStep).toMatch('search');
+    scope.nextStep();
+    expect(scope.wizStep).toMatch('products');
   });
 
-
-  it('should ....', function() {
-    //spec body
-  });
-});
-
-
-describe('MyCtrl2', function(){
-  var myCtrl2;
-
-
-  beforeEach(function(){
-    myCtrl2 = new MyCtrl2();
+  it('can reset to the first step', function(){
+    scope.nextStep();
+    scope.nextStep();
+    expect(scope.wizStep).not.toMatch('search');
+    scope.reset();
+    expect(scope.wizStep).toMatch('search');
   });
 
-
-  it('should ....', function() {
-    //spec body
-  });
 });
