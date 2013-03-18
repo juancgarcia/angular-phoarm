@@ -1,0 +1,38 @@
+<div ng-controller="ContractWizardCustomerCtrl">
+	    	<h3>Customer</h3>
+			<label for="name">First Name: </label>
+				<input type="text" ng-model="form.customer.name.first">
+			<label for="name">Middle Initial: </label>
+				<input type="text" ng-model="form.customer.name.mi">
+			<label for="name">Last Name: </label>
+				<input type="text" ng-model="form.customer.name.last"><br/>
+			<label for="name">Address1: </label>
+				<input type="text" ng-model="form.customer.address.line1"><br/>
+			<label for="name">Address2: </label>
+				<input type="text" ng-model="form.customer.address.line2"><br/>
+			<label for="name">City: </label>
+				<input type="text" ng-model="form.customer.address.city">
+			<label for="name">State: </label>
+				<input type="text" ng-model="form.customer.address.state">
+			<label for="name">Zip: </label>
+				<input type="text" ng-model="form.customer.address.zip"><br/>
+			<label for="name">Phone: </label>
+				<input type="text" ng-model="form.customer.phone"><br/>
+
+			<h3>Lien</h3>
+			<label for="name">Name: </label>
+				<input type="text" ng-model="form.lienHolder.name">
+			<label for="name">Address: </label>
+				<input type="text" ng-model="form.lienHolder.address">
+			<label for="name">City: </label>
+				<input type="text" ng-model="form.lienHolder.city">
+			<label for="name">State: </label>
+				<input type="text" ng-model="form.lienHolder.state">
+			<label for="name">Zip: </label>
+				<input type="text" ng-model="form.lienHolder.zip">
+
+			<button ng-click="submit()">Submit</button>
+<pre>
+Current Form: {{form | json}}
+</pre>
+	    </div>

@@ -1,0 +1,16 @@
+<div ng-controller="ContractWizardSearchCtrl">
+	<label for="vin">VIN</label>
+		<input type="text" ng-model="form.vin"><br/>
+	<label for="stock">Stock #</label>
+		<input type="text" ng-model="form.stock"><br/>
+	<label for="miles">Mileage</label>
+		<input type="text" ng-model="form.miles"><br/>
+	<label for="condition">Condition</label>
+		<select ng-model="form.condition" ng-options="condition for condition in conditions"><br/>
+	<label for="date">Sale Date</label>
+		<input type="text" ng-model="form.date"><br/>
+	<button ng-click="submit()">Next</button>
+<pre>
+Current Form: {{ form | json }}
+</pre>
+</div>

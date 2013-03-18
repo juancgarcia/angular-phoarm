@@ -1,23 +1,27 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>My AngularJS App</title>
+  <title>AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body>
+<body id="ng-app" ng-app="myApp">
   <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
+    <!-- <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li> -->
+    <li><a href="#/contracts/wizard">Wizard</a></li>
   </ul>
 
-  <div ng-view></div>
+  <div class="ng-view"></div>
 
   <div>Angular seed app: v<span app-version></span></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   -->
+  <!--[if lt IE 8]>
+     <script src="/lib/json3.min.js"></script>
+   <![endif]-->
   <script src="lib/angular/angular.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
