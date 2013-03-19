@@ -8,7 +8,10 @@
 			{{product.name}}
 			<ul>
 				<li ng-repeat="option in product.options">
-					<input type="radio" ng-model="form.product_id" value="{{option.id}}" id="option_{{option.id}}" name="option"/><label for="option_{{option.id}}" />{{option.name}}</label>
+					<input type="radio" ng-model="form.product_id"
+					value="{{option.id}}" radio-value="{{option.id}}"
+					id="option_{{option.id}}" name="option"/><label
+					for="option_{{option.id}}" />{{option.name}}</label>
 				</li>
 			</ul>
 		</li>			
