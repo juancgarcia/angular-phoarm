@@ -3,13 +3,11 @@
 /* Controllers */
 
 
-// function MyCtrl1() {}
-// MyCtrl1.$inject = [];
-
-
-// function MyCtrl2() {
-// }
-// MyCtrl2.$inject = [];
+myApp.controller('RadioTestCtrl', ['$scope', function($scope){
+	$scope.form = {
+		product_id: 1
+	};
+}]);
 
 myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){
 	$scope.WizardDS = WizardDS;	
