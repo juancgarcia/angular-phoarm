@@ -145,3 +145,48 @@ describe('DummyAPI', function(){
 		});
 	});
 });
+
+describe('messaging', function(){
+  var rootScope,
+      myEventName,
+      myMessageBody,
+      randomObject;
+
+  beforeEach(inject(function($rootScope){
+    rootScope = $rootScope;
+    myEventName = 'importantHandle';
+    myMessageBody = 'you ought to know';
+    randomObject = {};
+  }));
+
+  it('can emit a message', function(){
+    randomObject.callback = function(message){
+      return message;
+    };
+
+    spyOn(randomObject, 'callback');
+    rootScope.$on(myEventName, randomObject.callback);
+    rootScope.$emit(myEventName, myMessageBody);
+
+    expect(randomObject.callback).toHaveBeenCalled();
+  });
+
+  it('can call back to multiple listeners', function(){
+    randomObject.callbackA = function(message){
+      return message;
+    };
+    randomObject.callbackB = function(message){
+      return message;
+    };
+
+    spyOn(randomObject, 'callbackA');
+    rootScope.$on(myEventName, randomObject.callbackA);
+    spyOn(randomObject, 'callbackB');
+    rootScope.$on(myEventName, randomObject.callbackB);
+
+    rootScope.$emit(myEventName, myMessageBody);
+
+    expect(randomObject.callbackA).toHaveBeenCalled();
+    expect(randomObject.callbackB).toHaveBeenCalled();
+  });
+});
