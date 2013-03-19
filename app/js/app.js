@@ -29,7 +29,6 @@ ieFixes.directive('radioValue', function(){
 // Declare app level module which depends on filters, and services
 window.myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ieFixes']).
   config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/contracts/ieRadioTest', {templateUrl: 'partials/ieRadio.html', controller: 'RadioTestCtrl'});
     $routeProvider.when('/contracts/wizard', {templateUrl: 'partials/contract-wizard.html', controller: 'ContractWizardCtrl'});
   }]);
 
