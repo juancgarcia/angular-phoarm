@@ -1,5 +1,10 @@
 /* app css stylesheet */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 /*clearfix*/
 .group:before,
 .group:after {
@@ -15,7 +20,8 @@
 
 pre.debug {
   width: 400px;
-  height: 300px;
+  height: auto;
+  padding:0 20px 40px;
   overflow: scroll;
 }
 
@@ -43,8 +49,13 @@ pre.debug {
 }
 
 .menu {
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
   list-style: none;
-  border-bottom: 0.1em solid black;
+  /*border-bottom: 0.1em solid black;*/
   margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
