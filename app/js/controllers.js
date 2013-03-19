@@ -2,15 +2,6 @@
 
 /* Controllers */
 
-
-// function MyCtrl1() {}
-// MyCtrl1.$inject = [];
-
-
-// function MyCtrl2() {
-// }
-// MyCtrl2.$inject = [];
-
 myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){
 	$scope.WizardDS = WizardDS;	
 
