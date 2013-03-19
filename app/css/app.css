@@ -1,5 +1,47 @@
 /* app css stylesheet */
 
+/*clearfix*/
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  zoom: 1; /* IE6&7 */
+}
+
+pre.debug {
+  width: 400px;
+  height: 300px;
+  overflow: scroll;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  background: rgb(60, 150, 180);
+}
+
+.footer {}
+
+.leftMenu {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 175px;
+  height: 400px;
+  background: rgb(79, 163, 211);
+}
+
+.ng-view {
+  float: left;
+  /*float: right;*/
+  margin: 0 30px;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
