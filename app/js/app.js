@@ -1,8 +1,33 @@
 'use strict';
 
+var ieFixes = angular.module('ieFixes', []);
+
+//via https://github.com/angular/angular.js/issues/1897
+ieFixes.directive('radioValue', function(){
+	return {
+		require: 'ngModel',
+		restrict: 'A',
+
+		link: function(scope, el, attr, controller){
+			// Delay until after render
+			setTimeout(function(){
+				// If 'value' isn't set properly
+				if (attr.value != attr.radioValue) {
+					// Enforce value
+					attr.value = attr.radioValue;
+
+					// Re-render (to reflect 'checked')
+					controller.$render();
+				}
+
+			});
+		}
+	};
+});
+
 
 // Declare app level module which depends on filters, and services
-window.myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
+window.myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ieFixes']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/contracts/wizard', {templateUrl: 'partials/contract-wizard.html', controller: 'ContractWizardCtrl'});
   }]);
