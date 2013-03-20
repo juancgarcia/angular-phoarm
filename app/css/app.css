@@ -44,7 +44,7 @@ body {
 .debug {
   width: 400px;
   height: auto;
-  padding:0 20px 40px;
+  padding: 0 20px 40px;
   overflow: scroll;
 }
 
@@ -79,18 +79,21 @@ body {
 }
 
 fieldset ul, fieldset li{
-border:0; margin:0; padding:0; list-style:none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 fieldset li{
-clear:both;
-list-style:none;
-padding-bottom:10px;
+  clear: both;
+  list-style: none;
+  padding-bottom: 10px;
 }
 
 fieldset input{
-float:left;
+  float: left;
 }
 fieldset label{
-width:140px;
-float:left;
+  min-width: 140px;
+  float: left;
 }
