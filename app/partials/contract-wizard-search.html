@@ -15,8 +15,13 @@
 				<select ng-model="searchForm.condition" ng-options="condition for condition in conditions" required></select>
 				</li>
 			<li><label for="saleDate">Sale Date</label>
-				<input type="text" ng-model="searchForm.date" required>
+				<input ng-model="searchForm.date" ui-date required>
 				</li>
+			<li><pre class="debug">
+Selected Date: {{ form.date }}<br/>
+Formatted Date: {{ form.date | date: 'mediumDate'}}<br/>
+Selected Month: {{ form.date.getMonth() }}<br/>
+				</pre></li>
 			<li><button ng-click="submit(searchForm)" ng-disabled="formFragment.$invalid || isUnchanged(searchForm)">Next</button>
 				</li>
 	</fieldset>
