@@ -1,37 +1,67 @@
 <div ng-controller="ContractWizardCustomerCtrl">
 	    	<h3>Customer</h3>
-			<label for="name">First Name: </label>
-				<input type="text" ng-model="form.customer.name.first">
-			<label for="name">Middle Initial: </label>
-				<input type="text" ng-model="form.customer.name.mi">
-			<label for="name">Last Name: </label>
-				<input type="text" ng-model="form.customer.name.last"><br/>
-			<label for="name">Address1: </label>
-				<input type="text" ng-model="form.customer.address.line1"><br/>
-			<label for="name">Address2: </label>
-				<input type="text" ng-model="form.customer.address.line2"><br/>
-			<label for="name">City: </label>
-				<input type="text" ng-model="form.customer.address.city">
-			<label for="name">State: </label>
-				<input type="text" ng-model="form.customer.address.state">
-			<label for="name">Zip: </label>
-				<input type="text" ng-model="form.customer.address.zip"><br/>
-			<label for="name">Phone: </label>
-				<input type="text" ng-model="form.customer.phone"><br/>
+	    	<fieldset>
+			<li>
+				<label for="name">First Name: </label>
+					<input type="text" ng-model="form.customer.name.first">
+			</li>
+			<li>
+				<label for="name">Middle Initial: </label>
+					<input type="text" ng-model="form.customer.name.mi">
+			</li>
+			<li>
+				<label for="name">Last Name: </label>
+					<input type="text" ng-model="form.customer.name.last">
+			</li>
+			<li>
+				<label for="name">Address1: </label>
+					<input type="text" ng-model="form.customer.address.line1">
+			</li>
+			<li>
+				<label for="name">Address2: </label>
+					<input type="text" ng-model="form.customer.address.line2">
+			</li>
+			<li>
+				<label for="name">City: </label>
+					<input type="text" ng-model="form.customer.address.city">
+			</li>
+			<li>
+				<label for="name">State: </label>
+					<input type="text" ng-model="form.customer.address.state">
+			</li>
+			<li>
+				<label for="name">Zip: </label>
+					<input type="text" ng-model="form.customer.address.zip">
+			</li>
+			<li>
+				<label for="name">Phone: </label>
+					<input type="text" ng-model="form.customer.phone">
+			</li>
 
 			<h3>Lien</h3>
-			<label for="name">Name: </label>
-				<input type="text" ng-model="form.lienHolder.name">
-			<label for="name">Address: </label>
-				<input type="text" ng-model="form.lienHolder.address">
-			<label for="name">City: </label>
-				<input type="text" ng-model="form.lienHolder.city">
-			<label for="name">State: </label>
-				<input type="text" ng-model="form.lienHolder.state">
-			<label for="name">Zip: </label>
-				<input type="text" ng-model="form.lienHolder.zip">
+			<li>
+				<label for="name">Name: </label>
+					<input type="text" ng-model="form.lienHolder.name">
+			</li>
+			<li>
+				<label for="name">Address: </label>
+					<input type="text" ng-model="form.lienHolder.address">
+			</li>
+			<li>
+				<label for="name">City: </label>
+					<input type="text" ng-model="form.lienHolder.city">
+			</li>
+			<li>
+				<label for="name">State: </label>
+					<input type="text" ng-model="form.lienHolder.state">
+			</li>
+			<li>
+				<label for="name">Zip: </label>
+					<input type="text" ng-model="form.lienHolder.zip">
+			</li>
 
-			<button ng-click="submit()">Submit</button>
+			<li><button ng-click="submit()">Submit</button></li>
+			</fieldset>
 <pre class="debug">
 Current Form: {{form | json}}
 </pre>

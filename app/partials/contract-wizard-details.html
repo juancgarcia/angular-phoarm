@@ -1,47 +1,49 @@
 <div ng-controller="ContractWizardDetailsCtrl">
 	<h3>Details Selection</h3>
-	<ul>
-		<li ng-repeat="product in products">
-			Product Name: {{product.name}}
-			<ul>
-				<li ng-repeat="option in product.options">
-					Option Group: {{option.name}}
-					<div ng-switch on="option.type">
-						<div ng-switch-when="radioGroup">										
-							<ul>
-								<li ng-repeat="item in option.items">
-									<input
-										type="radio"
-										ng-model="option.value"
-										name="{{option.code}}"
-										value="{{item.id}}"/>
-										<label for="optionItem_{{item.id}}" />{{item.name}}</label>
-								</li>
-							</ul>
+	<fieldset>
+		<ul>
+			<li ng-repeat="product in products">
+				Product Name: {{product.name}}
+				<ul>
+					<li ng-repeat="option in product.options">
+						Option Group: {{option.name}}
+						<div ng-switch on="option.type">
+							<div ng-switch-when="radioGroup">										
+								<ul>
+									<li ng-repeat="item in option.items">
+										<input
+											type="radio"
+											ng-model="option.value"
+											name="{{option.code}}"
+											value="{{item.id}}"/>
+											<label for="optionItem_{{item.id}}" />{{item.name}}</label>
+									</li>
+								</ul>
+							</div>
+
+							<div ng-switch-when="check">										
+								<ul>
+									<li ng-repeat="item in option.items">
+										<input
+											type="checkbox"
+											ng-model="item.value"
+											ngTrueValue="true"
+											ngFalseValue=""/><!--
+											name="{{option.code}}"
+										-->
+											<label for="optionItem_{{item.id}}" />{{item.name}}</label>
+									</li>
+								</ul>
+							</div>
+
 						</div>
 
-						<div ng-switch-when="check">										
-							<ul>
-								<li ng-repeat="item in option.items">
-									<input
-										type="checkbox"
-										ng-model="item.value"
-										ngTrueValue="true"
-										ngFalseValue=""/><!--
-										name="{{option.code}}"
-									-->
-										<label for="optionItem_{{item.id}}" />{{item.name}}</label>
-								</li>
-							</ul>
-						</div>
-
-					</div>
-
-				</li>
-			</ul>
-		</li>
-	</ul>
-	<button ng-click="submit()">Next</button>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<button ng-click="submit()">Next</button>
+	</fieldset>
 <pre class="debug">
 Current Form: {{form | json}}
 Products: {{products | json}}
