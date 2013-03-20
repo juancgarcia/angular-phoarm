@@ -14,8 +14,13 @@
 				<select ng-model="form.condition" ng-options="condition for condition in conditions"></select>
 				</li>
 			<li><label for="saleDate">Sale Date</label>
-				<input type="text" ng-model="form.date">
+				<input ng-model="form.date" ui-date>
 				</li>
+			<li><pre class="debug">
+Selected Date: {{ form.date }}<br/>
+Formatted Date: {{ form.date | date: 'mediumDate'}}<br/>
+Selected Month: {{ form.date.getMonth() }}<br/>
+				</pre></li>
 			<li><button ng-click="submit()">Next</button>
 				</li>
 	</fieldset>
