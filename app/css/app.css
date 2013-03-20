@@ -1,6 +1,6 @@
 /* app css stylesheet */
 
-* {
+body {
   margin: 0;
   padding: 0;
 }
@@ -16,13 +16,6 @@
 }
 .group {
   zoom: 1; /* IE6&7 */
-}
-
-pre.debug {
-  width: 400px;
-  height: auto;
-  padding:0 20px 40px;
-  overflow: scroll;
 }
 
 .header {
@@ -48,14 +41,17 @@ pre.debug {
   margin: 0 30px;
 }
 
-.menu {
-  margin: 0;
-  padding: 0;
+.debug {
+  width: 400px;
+  height: auto;
+  padding:0 20px 40px;
+  overflow: scroll;
 }
 
 .menu {
   list-style: none;
   /*border-bottom: 0.1em solid black;*/
+  margin-top: 0;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
