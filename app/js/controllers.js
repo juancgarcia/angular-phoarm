@@ -19,6 +19,30 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 		'partials/contract-wizard-customer.html'
 	];
 
+	var states = {
+		'search': {
+			'partial': 'partials/contract-wizard-search.html'
+		},
+		'products': {
+			'partial': 'partials/contract-wizard-product.html'
+		},
+		'details': {
+			'partial': 'partials/contract-wizard-details.html'
+		},
+		'customer': {
+			'partial': 'partials/contract-wizard-customer.html'			
+		},
+		'done': {
+			'partial': ''
+		}
+	}, sequenceIndex = (function(arr){
+		var result = [];
+		for (var i = 0; i < arr.length; i++) {
+			result[ arr[i] ] = i;
+		};
+		return result;
+	})(sequence);;
+
 	function moveToIndex(_index){
 		if(_index < 0 || _index > sequence.length - 1)
 			return;
@@ -28,6 +52,7 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 	}
 
 	$scope.reset = function(){
+		// $scope.wizStep = sequence[0];
 		index = 0;
 		moveToIndex(index);
 		$scope.WizardDS.reset(true);
@@ -35,6 +60,22 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 
 	$scope.nextStep = function(){
 		moveToIndex(index+1);
+	}
+
+	function find(keyName){
+		// return sequence[ sequenceIndex[keyName] ];
+		return sequenceIndex[keyName];
+	}
+
+	function old_find(key){
+		var index = -1;
+		for(var i=0; i<sequence.length; i++){
+			if(sequence[i] == key){
+				index = i;
+				i = sequence.length;
+			}
+		}
+		return index;
 	}
 
 	$scope.reset();
