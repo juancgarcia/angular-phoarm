@@ -1,7 +1,7 @@
 <form ng-controller="ContractWizardCtrl">
 	<div ng-switch on="wizStep">
 	    <!--STEP 1 -->             
-	    <div ng-switch-when="search" ng-include="'partials/contract-wizard-search.html'"></div>
+	    <div ng-switch-when="search" ng-include="wizStep"></div>
 
 	    <!-- STEP 2 -->
 	    <div ng-switch-when="products" ng-include="'partials/contract-wizard-product.html'"></div>

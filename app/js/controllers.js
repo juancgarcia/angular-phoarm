@@ -3,18 +3,40 @@
 /* Controllers */
 
 myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){
-	$scope.WizardDS = WizardDS;	
+	$scope.WizardDS = WizardDS;
+	$scope.wizStep = '';
 
 	var sequence = [
-		'search',
-		'products',
-		'details',
-		'customer',
-		'done'
-	];	
+		'search', 'products', 'details', 'customer', 'done'
+	], sequenceIndex = (function(arr){
+		var result = [];
+		for (var i = 0; i < arr.length; i++) {
+			result[ arr[i] ] = i;
+		};
+		return result;
+	})(sequence);
+	//console.log(sequenceIndex);
+
+	var states = {
+		'search': {
+			'partial': 'partials/contract-wizard-search.html'
+		},
+		'products': {
+			'partial': 'partials/contract-wizard-product.html'
+		},
+		'details': {
+			'partial': 'partials/contract-wizard-details.html'
+		},
+		'customer': {
+			'partial': 'partials/contract-wizard-customer.html'			
+		},
+		'done': {
+			'partial': ''
+		}
+	};
 
 	$scope.reset = function(){
-		$scope.wizStep = 'search';
+		$scope.wizStep = sequence[0];
 		$scope.WizardDS.reset(true);
 	}
 
@@ -23,7 +45,12 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 		$scope.wizStep = sequence[current+1];
 	}
 
-	function find(key){
+	function find(keyName){
+		// return sequence[ sequenceIndex[keyName] ];
+		return sequenceIndex[keyName];
+	}
+
+	function old_find(key){
 		var index = -1;
 		for(var i=0; i<sequence.length; i++){
 			if(sequence[i] == key){
