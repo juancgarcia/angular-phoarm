@@ -14,11 +14,12 @@
 					for="option_{{option.id}}" />{{option.name}}</label>
 				</li>
 			</ul>
-		</li>			
+		</li>
+		<li><button ng-click="submit()">Next</button></li>
 	</ul>
 	</fieldset>
 
-	<button ng-click="submit()">Next</button>
+	
 <pre class="debug">
 Current Form: {{form | json}}
 Products: {{products | json}}

@@ -1,19 +1,6 @@
 <form ng-controller="ContractWizardCtrl">
-	<div ng-switch on="wizStep">
-	    <!--STEP 1 -->             
-	    <div ng-switch-when="search" ng-include="'partials/contract-wizard-search.html'"></div>
-
-	    <!-- STEP 2 -->
-	    <div ng-switch-when="products" ng-include="'partials/contract-wizard-product.html'"></div>
-
-	    <!-- STEP 3 -->
-	    <div ng-switch-when="details" ng-include="'partials/contract-wizard-details.html'"></div>
-
-	    <!-- STEP 4 -->
-	    <div ng-switch-when="customer" ng-include="'partials/contract-wizard-customer.html'"></div>
-    </div>
+	<div ng-include="partial"></div>
     <button ng-click="reset()">Reset</button>
-
 
 <pre class="debug">
 Step: {{ wizStep }}

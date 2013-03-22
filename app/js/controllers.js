@@ -3,7 +3,8 @@
 /* Controllers */
 
 myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){
-	$scope.WizardDS = WizardDS;	
+	$scope.WizardDS = WizardDS;
+	var index;
 
 	var sequence = [
 		'search',
@@ -11,27 +12,29 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 		'details',
 		'customer',
 		'done'
-	];	
+	], partials = [
+		'partials/contract-wizard-search.html',
+		'partials/contract-wizard-product.html',
+		'partials/contract-wizard-details.html',
+		'partials/contract-wizard-customer.html'
+	];
+
+	function moveToIndex(_index){
+		if(_index < 0 || _index > sequence.length - 1)
+			return;
+		index = _index;
+		$scope.wizStep = sequence[index];
+		$scope.partial = partials[index];
+	}
 
 	$scope.reset = function(){
-		$scope.wizStep = 'search';
+		index = 0;
+		moveToIndex(index);
 		$scope.WizardDS.reset(true);
 	}
 
 	$scope.nextStep = function(){
-		var current = find($scope.wizStep);
-		$scope.wizStep = sequence[current+1];
-	}
-
-	function find(key){
-		var index = -1;
-		for(var i=0; i<sequence.length; i++){
-			if(sequence[i] == key){
-				index = i;
-				i = sequence.length;
-			}
-		}
-		return index;
+		moveToIndex(index+1);
 	}
 
 	$scope.reset();
