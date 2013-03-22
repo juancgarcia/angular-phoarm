@@ -1,9 +1,21 @@
+function s4() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+             .toString(16)
+             .substring(1);
+};
 
+function guid() {
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+         s4() + '-' + s4() + s4() + s4();
+}
 
 myApp.helper = {};
 myApp.helper.classes = {};
 myApp.helper.classes.state = (function() {
-	var stateClass = function(config){};
+	var stateClass = function(config){
+		config = config || {};
+		this.name = config.name || guid();
+	};
 	stateClass.prototype.name = '--unnamed--';
 	stateClass.prototype.getName = function(){
 		return this.name;
@@ -13,11 +25,34 @@ myApp.helper.classes.state = (function() {
 })();
 
 myApp.helper.classes.stateList = (function(){
+	var nameToIndex, indexToName, nextInsert, dataStructure;
+
 	var stateListClass = function(config){
-		var names = {};
-		var indexes = {};
+		nameToIndex = {};
+		indexToName = {};
+		nextInsert = 0;
 	};
-	stateListClass.prototype.add = function(){};
+	stateListClass.prototype.add = function(state_s){
+		if(Array.isArray(state_s))
+			addMany.call(this, state_s);
+		else
+			addMany.call(this, [state_s]);
+
+		function addOne(state){
+			if( !(state instanceof myApp.helper.classes.stateList) )
+				state = new myApp.helper.classes.stateList(state);
+
+			nameToIndex[state.getName()] = nextInsert;
+			indexToName[nextInsert] = state.getName();
+			nextInsert++;
+		}
+		function addMany(states){}
+	};
+	stateListClass.prototype.get = function(name){
+		var foo;
+		if(false)
+			foo = 12;
+	};
 })();
 
 myApp.helper.classes.stateMachine = function(config){
@@ -34,6 +69,7 @@ myApp.helper.classes.stateMachine = function(config){
 		statesIndex = (function(arr){
 			var result = [];
 			for (var i = 0; i < arr.length; i++) {
+				if(arr[i] instanceof myApp.helper.classes.state)
 				result[ arr[i].name ] = i;
 				// console.log('result @'+arr[i].name+' = '+i);
 			};
