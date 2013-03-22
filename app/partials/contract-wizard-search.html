@@ -1,25 +1,39 @@
 <div ng-controller="ContractWizardSearchCtrl">
+	<form class="css-form" novalidate>
 	<fieldset>
 		<ul>
 			<li><label for="vin">VIN</label>
-				<input type="text" ng-model="form.vin" required>
+				<input type="text" ng-model="search.vin" required>
 				</li>
 			<li><label for="stock">Stock #</label>
-				<input type="text" ng-model="form.stock" required>
+				<input type="text" ng-model="search.stock" required>
 				</li>
 			<li><label for="miles">Mileage</label>
-				<input type="text" ng-model="form.miles" required>
+				<input type="text" ng-model="search.miles" required>
 				</li>
 			<li><label for="condition">Condition</label>
-				<select ng-model="form.condition" ng-options="condition for condition in conditions"></select>
+				<select ng-model="search.condition" ng-options="condition for condition in conditions"></select>
 				</li>
 			<li><label for="saleDate">Sale Date</label>
-				<input type="text" ng-model="form.date" required>
+				<input type="text" ng-model="search.date" required>
 				</li>
-			<li><button ng-click="submit()">Next</button>
+			<li><button ng-click="submit(search)" ng-disabled="search.$invalid || isUnchanged(search)">Next</button>
 				</li>
 	</fieldset>
+<pre>
+inside
+form: {{ form | json }}
+search: {{ search | json }}
+searchForm: {{ searchForm | json }}
+form.$isInvalid: {{form.$invalid}}
+search.$isInvalid: {{search.$invalid}}
+searchForm.$isInvalid: {{searchForm.$invalid}}
+</pre>
+	</form>
 <pre class="debug">
+outside
 Current Form: {{ form | json }}
+Current searchForm: {{ searchForm | json }}
+searchForm.$isInvalid: {{searchForm.$invalid}}
 </pre>
 </div>

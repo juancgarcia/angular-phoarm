@@ -63,6 +63,10 @@ myApp.controller('ContractWizardSearchCtrl', ['$scope', 'WizardDS', function($sc
 		date: ''
 	};
 
+	$scope.isUnchanged = function(formData){
+		return angular.equals(formData, blankFields);
+	};
+
 	$scope.reset = function(fields){
 		$scope.form = angular.copy(fields || blankFields);
 	};
