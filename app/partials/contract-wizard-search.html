@@ -1,5 +1,5 @@
 <div ng-controller="ContractWizardSearchCtrl">
-	<form class="css-form" novalidate>
+	<form name="searchForm" class="css-form" novalidate>
 	<fieldset>
 		<ul>
 			<li><label for="vin">VIN</label>
@@ -22,18 +22,17 @@
 	</fieldset>
 <pre>
 inside
-form: {{ form | json }}
 search: {{ search | json }}
 searchForm: {{ searchForm | json }}
-form.$isInvalid: {{form.$invalid}}
-search.$isInvalid: {{search.$invalid}}
-searchForm.$isInvalid: {{searchForm.$invalid}}
+search.$invalid: {{search.$invalid}}
+searchForm.$invalid: {{searchForm.$invalid}}
 </pre>
 	</form>
 <pre class="debug">
 outside
-Current Form: {{ form | json }}
-Current searchForm: {{ searchForm | json }}
-searchForm.$isInvalid: {{searchForm.$invalid}}
+search: {{ search | json }}
+searchForm: {{ searchForm | json }}
+search.$invalid: {{search.$invalid}}
+searchForm.$invalid: {{searchForm.$invalid}}
 </pre>
 </div>
