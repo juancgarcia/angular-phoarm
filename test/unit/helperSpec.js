@@ -1,6 +1,18 @@
 // Helper Classes
 
 describe('Helpers', function(){
+
+	describe('stateObject', function(){
+		var myState;
+		beforeEach(function(){
+			myState = new myApp.helper.classes.state();
+		});
+		it('has name', function(){
+			expect(myState.getName()).not.toBe(undefined);
+			expect(myState.getName().length).toBeGreaterThan(0);
+		});
+	});
+
 	describe('stateMachine', function(){
 		var SM,
 			states = [
