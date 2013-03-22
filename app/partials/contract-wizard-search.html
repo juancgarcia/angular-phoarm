@@ -1,5 +1,5 @@
 <div ng-controller="ContractWizardSearchCtrl">
-	<form name="searchForm" class="css-form" novalidate>
+	<div ng-form name="searchForm" class="css-form" novalidate>
 	<fieldset>
 		<ul>
 			<li><label for="vin">VIN</label>
@@ -17,22 +17,18 @@
 			<li><label for="saleDate">Sale Date</label>
 				<input type="text" ng-model="search.date" required>
 				</li>
-			<li><button ng-click="submit(search)" ng-disabled="search.$invalid || isUnchanged(search)">Next</button>
+			<li><button ng-click="submit(search)" ng-disabled="searchForm.$invalid || isUnchanged(search)">Next</button>
 				</li>
 	</fieldset>
 <pre>
 inside
 search: {{ search | json }}
-searchForm: {{ searchForm | json }}
-search.$invalid: {{search.$invalid}}
 searchForm.$invalid: {{searchForm.$invalid}}
 </pre>
-	</form>
+	</div>
 <pre class="debug">
 outside
 search: {{ search | json }}
-searchForm: {{ searchForm | json }}
-search.$invalid: {{search.$invalid}}
 searchForm.$invalid: {{searchForm.$invalid}}
 </pre>
 </div>
