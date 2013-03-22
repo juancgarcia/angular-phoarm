@@ -2,19 +2,19 @@
 	<fieldset>
 		<ul>
 			<li><label for="vin">VIN</label>
-				<input type="text" ng-model="form.vin">
+				<input type="text" ng-model="form.vin" required>
 				</li>
 			<li><label for="stock">Stock #</label>
-				<input type="text" ng-model="form.stock">
+				<input type="text" ng-model="form.stock" required>
 				</li>
 			<li><label for="miles">Mileage</label>
-				<input type="text" ng-model="form.miles">
+				<input type="text" ng-model="form.miles" required>
 				</li>
 			<li><label for="condition">Condition</label>
 				<select ng-model="form.condition" ng-options="condition for condition in conditions"></select>
 				</li>
 			<li><label for="saleDate">Sale Date</label>
-				<input type="text" ng-model="form.date">
+				<input type="text" ng-model="form.date" required>
 				</li>
 			<li><button ng-click="submit()">Next</button>
 				</li>

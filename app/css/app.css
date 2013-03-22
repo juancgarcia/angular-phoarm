@@ -18,6 +18,8 @@ body {
   zoom: 1; /* IE6&7 */
 }
 
+/*simple layout styles*/
+
 .header {
   height: 50px;
   width: 100%;
@@ -47,6 +49,9 @@ body {
   padding: 0 20px 40px;
   overflow: scroll;
 }
+
+
+/*Dummy Menu*/
 
 .menu {
   list-style: none;
@@ -78,6 +83,9 @@ body {
   padding: 0;
 }
 
+
+/*Forms*/
+
 fieldset ul, fieldset li{
   border: 0;
   margin: 0;
@@ -96,4 +104,14 @@ fieldset input{
 fieldset label{
   min-width: 140px;
   float: left;
+}
+
+
+/*basic validation marking*/
+/*.css-form*/ input.ng-invalid.ng-dirty {
+  background-color: #FA787E;
+}
+
+/*.css-form*/ input.ng-valid.ng-dirty {
+  background-color: #78FA89;
 }
