@@ -67,6 +67,11 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 		return sequenceIndex[keyName];
 	}
 
+	function find(keyName){
+		// return sequence[ sequenceIndex[keyName] ];
+		return sequenceIndex[keyName];
+	}
+
 	function old_find(key){
 		var index = -1;
 		for(var i=0; i<sequence.length; i++){
