@@ -41,16 +41,18 @@ myApp.factory('DummyAPI', function($http){
 	api.getDetails = function(callback, product_id){
 		var httpPromise = $http.get('./dummy-data/detail-all.json');
 		httpPromise.success(function(data, status, headers, config){
-			var index = 0;
-			console.log('Total: '+ data.length);
-			for(var i=0; i<data.length; i++){
-				if(data[i].id != product_id){
-					console.log('Deleting Product['+index+']: '+data[i].product_id);
-					data.splice(i, 1);
-					i--;
-				} index++;
-			}
-			callback.apply(this, arguments);
+			var index = 0, found = false, selectedProduct;
+
+			angular.forEach(data, function(product, key){
+				if(!found){
+					if(product.id == product_id){
+						found = true;
+						selectedProduct = product;
+					}
+				}
+			});
+
+			callback.apply(this, [selectedProduct, status, headers,config]);
 		});
 		httpPromise.error(function(data, status, headers, config){
 			callback.apply(this, arguments);

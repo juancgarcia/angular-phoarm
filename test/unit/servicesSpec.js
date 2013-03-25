@@ -133,13 +133,13 @@ describe('DummyAPI', function(){
 		it('getDetails returns properly', function(){
 			svc.getDetails(function(data, status){
 				expect(data).not.toBeNull();
-				expect(data.length).toBeGreaterThan(0);
-				expect(data[0].name).toMatch(testData.name);//
-				expect(data[0].options).not.toBeNull();
-				expect(data[0].options.length).toBeGreaterThan(0);
-				expect(data[0].options[0].items).not.toBeNull();
-				expect(data[0].options[0].items.length).toBeGreaterThan(0);
-				expect(data[0].options[0].items[0].name).
+				//expect(data.length).toBeGreaterThan(0);
+				expect(data.name).toMatch(testData.name);//
+				expect(data.options).not.toBeNull();
+				expect(data.options.length).toBeGreaterThan(0);
+				expect(data.options[0].items).not.toBeNull();
+				expect(data.options[0].items.length).toBeGreaterThan(0);
+				expect(data.options[0].items[0].name).
 					toMatch(testData.options[0].items[0].name);
 			});
 		});

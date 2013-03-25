@@ -43,7 +43,7 @@ myApp.controller('ContractWizardCtrl', ['$scope', 'WizardDS', function($scope, W
 myApp.controller('ContractWizardSearchCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){
 	$scope.WizardDS = WizardDS;
 
-	$scope.form = {};
+	$scope.searchForm = {};
 
 	$scope.conditions = ['new', 'used'];
 
@@ -68,10 +68,10 @@ myApp.controller('ContractWizardSearchCtrl', ['$scope', 'WizardDS', function($sc
 	};
 
 	$scope.reset = function(fields){
-		$scope.form = angular.copy(fields || blankFields);
+		$scope.searchForm = angular.copy(fields || blankFields);
 	};
 
-	$scope.validate = function(){
+	$scope.validate = function(fields){
 		var valid = true;
 		for(var i=0; i<0; i++){
 			valid = valid && (true)/*condition*/;
@@ -79,10 +79,10 @@ myApp.controller('ContractWizardSearchCtrl', ['$scope', 'WizardDS', function($sc
 		return valid;
 	};
 
-	$scope.submit = function(){
-		if($scope.validate()){
+	$scope.submit = function(fields){
+		if($scope.validate(fields)){
 			//doSearch
-			var resultData = WizardDS.merge($scope.form);
+			var resultData = WizardDS.merge(fields);
 			$scope.nextStep();
 		}
 	};
@@ -93,20 +93,25 @@ myApp.controller('ContractWizardSearchCtrl', ['$scope', 'WizardDS', function($sc
 
 myApp.controller('ContractWizardProductsCtrl', ['$scope', 'WizardDS', 'DummyAPI', function($scope, WizardDS, DummyAPI){
 	$scope.WizardDS = WizardDS;
-	$scope.form = {product_id: 0};
+	$scope.productsForm = {};
+
+	var blankFields = {product_id: null};
 
 	$scope.products = [];
 
 	DummyAPI.getProducts(function(data, status){
 		$scope.products = data;
-		$scope.form.product_id = data[0].options[0].id;
 	});
 
-	$scope.selection = function(value){
-		console.log('ng:change fired', value);
+	$scope.isUnchanged = function(formData){
+		return angular.equals(formData, blankFields);
 	};
 
-	$scope.validate = function(){
+	$scope.reset = function(fields){
+		$scope.productsForm = angular.copy(fields || blankFields);
+	};
+
+	$scope.validate = function(fields){
 		var valid = true;
 		for(var i=0; i<0; i++){
 			valid = valid && (true)/*condition*/;
@@ -114,66 +119,79 @@ myApp.controller('ContractWizardProductsCtrl', ['$scope', 'WizardDS', 'DummyAPI'
 		return valid;
 	};
 
-	$scope.submit = function(){
-		if($scope.validate()){
+	$scope.submit = function(fields){
+		if($scope.validate(fields)){
 			//doSearch
-			var resultData = WizardDS.merge($scope.form);
+			var resultData = WizardDS.merge(fields);
 			$scope.nextStep();
 		}
 	};
+
+	$scope.reset();
 }]);
 
 myApp.controller('ContractWizardDetailsCtrl', ['$scope', 'WizardDS', 'DummyAPI', function($scope, WizardDS, DummyAPI){
 	$scope.WizardDS = WizardDS;
-	$scope.form = {};
+	$scope.productDetails = {};
+
+	var blankFields = null;
 
 	DummyAPI.getDetails(function(data, status){
-		$scope.products = data;
-		// var optionGroup;
-		// for(var i=0; i<data.length; i++){
-		// 	for(var j=0; j<data[i].options[j].length; j++){
-		// 		optionGroup = 'optionGroup' + data[i].id + "_" + data[i].options[j].id;
-		// 		$scope.form[optionGroup];
-		// 	}
-		// }
+
+		$scope.productDetails = data;
+		blankFields = parseFormData(data); //get base state for unmarked form
 
 	}, $scope.WizardDS.data.product_id);
 
-	$scope.validate = function(){
-		var valid = true;
-		for(var i=0; i<0; i++){
-			valid = valid && (true)/*condition*/;
-		}
-		return valid;
+	$scope.isUnchanged = function(formData){
+		return angular.equals(parseFormData(formData), blankFields);
 	};
 
-	function extractFormData(products){
-		products = products || {};
-		var data = {};
-		//products = [{ options:[{code: "optionGroup_id", value: 'value',...},...] },...]
-		angular.forEach(products, function(product, pKey){
-			angular.forEach(product.options, function(option, oKey){
-				if(option.type == 'radioGroup'){
-					data[option.code] = option.value;
-				} else if(option.type == 'check'){				
-					angular.forEach(option.items, function(item, key){
-						if(item.value && item.value === true)
-							data[item.code] = true;
-					});
-				}				
-			});
+	$scope.validate = function(postData){
+		return true;
+	};
+
+	$scope.impermissible = function(formData){
+		var errors = [];
+		parseFormData(formData, errors);
+		return errors.length != 0;
+	};
+
+	function parseFormData(formDefinition, errors){
+		//products = products || {};
+		formDefinition = formDefinition || {};
+		errors = errors || [];
+
+		var data = {},
+			permissible = true;
+
+		//formDefinition = { product_id: 0, options:[{code: "optionGroup_id", value: 'value',...},...] }
+		angular.forEach(formDefinition.options, function(option, oKey){
+			if(option.type == 'radioGroup'){
+				if( typeof option.value === 'undefined' /*&& option.required*/ ){
+					errors.push(option.code);
+				}
+				data[option.code] = option.value;
+			} else if(option.type == 'check'){		
+				angular.forEach(option.items, function(item, key){
+					if(item.value && item.value === true)
+						data[item.code] = true;
+				});
+			}				
 		});
+
 		return data;
 	}
 
-	$scope.submit = function(){
-		if($scope.validate()){
+	$scope.submit = function(fields){
+		//fields is ignored as data is embedded into product details object
+		fields = parseFormData($scope.productDetails);
+		if($scope.validate(fields)){
 			//doSearch
-			var filteredForm = extractFormData($scope.products);
-			var resultData = WizardDS.merge(filteredForm);
+			var resultData = WizardDS.merge(fields);
 			$scope.nextStep();
 		}
-	};	
+	};
 }]);
 
 myApp.controller('ContractWizardCustomerCtrl', ['$scope', 'WizardDS', function($scope, WizardDS){

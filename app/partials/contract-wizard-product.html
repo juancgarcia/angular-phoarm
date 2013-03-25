@@ -1,27 +1,28 @@
 <div ng-controller="ContractWizardProductsCtrl">
+	<div ng-form name="formFragment" class="css-form" novalidate>
 	<h3>{{vehicle.name}}</h3>
 
-	<p>Product Selection: {{form.product_id}}</p>
+	<p>Product Selection: {{productsForm.product_id}}</p>
 	<fieldset>
 	<ul>
 		<li ng-repeat="product in products">
 			{{product.name}}
 			<ul>
 				<li ng-repeat="option in product.options">
-					<input type="radio" ng-model="form.product_id"
+					<input type="radio" ng-model="productsForm.product_id"
 					value="{{option.id}}" radio-value="{{option.id}}"
 					id="option_{{option.id}}" name="option"/><label
 					for="option_{{option.id}}" />{{option.name}}</label>
 				</li>
 			</ul>
 		</li>
-		<li><button ng-click="submit()">Next</button></li>
+		<li><button ng-click="submit(productsForm)" ng-disabled="formFragment.$invalid || isUnchanged(productsForm)">Next</button></li>
 	</ul>
 	</fieldset>
-
-	
 <pre class="debug">
-Current Form: {{form | json}}
+formFragment.$invalid: {{ formFragment.$invalid }}
+productsForm: {{ productsForm | json }}
 Products: {{products | json}}
 </pre>
+	</div>
 </div>
