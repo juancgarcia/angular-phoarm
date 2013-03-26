@@ -9,19 +9,14 @@
 				<input type="text" ng-model="searchForm.stock" required>
 				</li>
 			<li><label for="miles">Mileage</label>
-				<input type="text" ng-model="searchForm.miles" required>
+				<input type="number" ng-model="searchForm.miles" name="miles" ng-pattern="/^[\.,0-9]+$/" required>
 				</li>
 			<li><label for="condition">Condition</label>
 				<select ng-model="searchForm.condition" ng-options="condition for condition in conditions" required></select>
 				</li>
 			<li><label for="saleDate">Sale Date</label>
-				<input ng-model="searchForm.date" ui-date required>
+				<input type="text" ng-model="searchForm.date" ui-date required>
 				</li>
-			<li><pre class="debug">
-Selected Date: {{ form.date }}<br/>
-Formatted Date: {{ form.date | date: 'mediumDate'}}<br/>
-Selected Month: {{ form.date.getMonth() }}<br/>
-				</pre></li>
 			<li><button ng-click="submit(searchForm)" ng-disabled="formFragment.$invalid || isUnchanged(searchForm)">Next</button>
 				</li>
 	</fieldset>

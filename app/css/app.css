@@ -48,6 +48,7 @@ body {
   height: auto;
   padding: 0 20px 40px;
   overflow: scroll;
+  display: none;
 }
 
 
@@ -108,10 +109,16 @@ fieldset label{
 
 
 /*basic validation marking*/
-/*.css-form*/ input.ng-invalid.ng-dirty {
+/*.css-form*/
+input[type=date].ng-invalid.ng-dirty,
+input[type=number].ng-invalid.ng-dirty,
+input[type=text].ng-invalid.ng-dirty {
   background-color: #FA787E;
 }
 
-/*.css-form*/ input.ng-valid.ng-dirty {
+/*.css-form*/
+input[type=date].ng-valid.ng-dirty,
+input[type=number].ng-valid.ng-dirty,
+input[type=text].ng-valid.ng-dirty {
   background-color: #78FA89;
 }

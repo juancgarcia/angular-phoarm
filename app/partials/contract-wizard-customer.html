@@ -1,9 +1,10 @@
 <div ng-controller="ContractWizardCustomerCtrl">
+	<div ng-form name="formFragment" novalidate>
 	    	<h3>Customer</h3>
 	    	<fieldset>
 			<li>
 				<label for="name">First Name: </label>
-					<input type="text" ng-model="form.customer.name.first">
+					<input type="text" ng-model="form.customer.name.first" required>
 			</li>
 			<li>
 				<label for="name">Middle Initial: </label>
@@ -11,11 +12,11 @@
 			</li>
 			<li>
 				<label for="name">Last Name: </label>
-					<input type="text" ng-model="form.customer.name.last">
+					<input type="text" ng-model="form.customer.name.last" required>
 			</li>
 			<li>
 				<label for="name">Address1: </label>
-					<input type="text" ng-model="form.customer.address.line1">
+					<input type="text" ng-model="form.customer.address.line1" required>
 			</li>
 			<li>
 				<label for="name">Address2: </label>
@@ -23,19 +24,19 @@
 			</li>
 			<li>
 				<label for="name">City: </label>
-					<input type="text" ng-model="form.customer.address.city">
+					<input type="text" ng-model="form.customer.address.city" required>
 			</li>
 			<li>
 				<label for="name">State: </label>
-					<input type="text" ng-model="form.customer.address.state">
+					<input type="text" ng-model="form.customer.address.state" required>
 			</li>
 			<li>
 				<label for="name">Zip: </label>
-					<input type="text" ng-model="form.customer.address.zip">
+					<input type="text" ng-model="form.customer.address.zip" ng-pattern="/^[- 0-9]+$/" required>
 			</li>
 			<li>
 				<label for="name">Phone: </label>
-					<input type="text" ng-model="form.customer.phone">
+					<input type="text" ng-model="form.customer.phone" ng-pattern="/^[- ()0-9]+$/" required>
 			</li>
 
 			<h3>Lien</h3>
@@ -57,11 +58,13 @@
 			</li>
 			<li>
 				<label for="name">Zip: </label>
-					<input type="text" ng-model="form.lienHolder.zip">
+					<input type="text" ng-model="form.lienHolder.zip" ng-pattern="/^[- 0-9]+$/">
 			</li>
 
-			<li><button ng-click="submit()">Submit</button></li>
+			<li>
+				<button ng-click="submit(form)" ng-disabled="formFragment.$invalid || isUnchanged(form)">Next</button></li>
 			</fieldset>
+	</div>
 <pre class="debug">
 Current Form: {{form | json}}
 </pre>
